@@ -15,3 +15,6 @@ SELECT curso, COUNT(aluno_id) AS total_alunos FROM matriculas GROUP BY curso;
 SELECT produto, AVG(receita) AS media_receita FROM vendas GROUP BY produto;
 
 SELECT produto, SUM(receita) AS receita_total FROM vendas GROUP BY produto HAVING SUM(receita) > 10000.00;
+
+SELECT autores.nome AS autor, COUNT(livros.id) AS numero_de_livros FROM autores LEFT JOIN livros ON autores.id = livros.autor_id GROUP BY autores.nome HAVING COUNT(livros.id) > 2;
+
