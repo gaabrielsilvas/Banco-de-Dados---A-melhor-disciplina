@@ -27,3 +27,5 @@ SELECT autores.nome AS autor, COALESCE(livros.titulo, 'Nenhum livro publicado') 
 SELECT matriculas.curso, alunos.nome AS aluno FROM matriculas RIGHT JOIN alunos ON matriculas.aluno_id = alunos.id;
 
 SELECT alunos.nome AS aluno, matriculas.curso FROM alunos INNER JOIN matriculas ON alunos.id = matriculas.aluno_id;
+
+SELECT autores.nome AS autor, COUNT(livros.id) AS numero_de_livros FROM autores LEFT JOIN livros ON autores.id = livros.autor_id GROUP BY autores.nome ORDER BY numero_de_livros DESC LIMIT 1;
