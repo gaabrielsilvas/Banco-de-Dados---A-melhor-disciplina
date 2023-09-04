@@ -19,3 +19,6 @@ SELECT produto, SUM(receita) AS receita_total FROM vendas GROUP BY produto HAVIN
 SELECT autores.nome AS autor, COUNT(livros.id) AS numero_de_livros FROM autores LEFT JOIN livros ON autores.id = livros.autor_id GROUP BY autores.nome HAVING COUNT(livros.id) > 2;
 
 SELECT livros.titulo AS livro, autores.nome AS autor FROM livros INNER JOIN autores ON livros.autor_id = autores.id;
+
+SELECT alunos.nome AS aluno, matriculas.curso FROM alunos LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id;
+
