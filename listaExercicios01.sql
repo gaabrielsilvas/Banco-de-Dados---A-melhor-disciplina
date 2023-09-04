@@ -29,3 +29,5 @@ SELECT matriculas.curso, alunos.nome AS aluno FROM matriculas RIGHT JOIN alunos 
 SELECT alunos.nome AS aluno, matriculas.curso FROM alunos INNER JOIN matriculas ON alunos.id = matriculas.aluno_id;
 
 SELECT autores.nome AS autor, COUNT(livros.id) AS numero_de_livros FROM autores LEFT JOIN livros ON autores.id = livros.autor_id GROUP BY autores.nome ORDER BY numero_de_livros DESC LIMIT 1;
+
+SELECT produto FROM vendas WHERE receita = (SELECT MIN(receita) FROM vendas);
