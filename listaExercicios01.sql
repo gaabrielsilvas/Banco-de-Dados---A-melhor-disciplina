@@ -51,3 +51,6 @@ SELECT produto FROM vendas WHERE receita = (SELECT MIN(receita) FROM vendas);
 
 -- Exer. 19
 SELECT alunos.nome AS aluno, COUNT(matriculas.id) AS numero_de_matriculas FROM alunos LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id GROUP BY alunos.nome;
+
+-- Exer. 20
+SELECT produto, COUNT(*) AS quantidade_de_transacoes FROM vendas GROUP BY produto ORDER BY quantidade_de_transacoes DESC LIMIT 1;
