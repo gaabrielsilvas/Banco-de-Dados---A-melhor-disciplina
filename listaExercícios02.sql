@@ -46,3 +46,42 @@ END;
 
 //
 
+--exercicio 7
+
+CREATE PROCEDURE sp_AdicionarLivro(
+    IN tituloLivro VARCHAR(255),
+    IN editoraID INT,
+    IN anoPublicacao INT,
+    IN numeroPaginas INT,
+    IN categoriaID INT,
+    OUT livroID INT,
+    OUT erro VARCHAR(255)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SET erro = 'Erro ao adicionar o livro. Verifique os dados e tente novamente.';
+    END;
+    
+    START TRANSACTION;
+    
+    -- Verifica se o título do livro já existe.
+    SELECT Livro_ID INTO livroID
+    FROM Livro
+    WHERE Titulo = tituloLivro;
+    
+    IF livroID IS NOT NULL THEN
+        ROLLBACK;
+        SET erro = 'Um livro com o mesmo título já existe na biblioteca.';
+    ELSE
+        -- Inserir o novo livro.
+        INSERT INTO Livro (Titulo, Editora_ID, Ano_Publicacao, Numero_Paginas, Categoria_ID)
+        VALUES (tituloLivro, editoraID, anoPublicacao, numeroPaginas, categoriaID);
+        
+        COMMIT;
+        SET erro = '';
+    END IF;
+END;
+
+//
