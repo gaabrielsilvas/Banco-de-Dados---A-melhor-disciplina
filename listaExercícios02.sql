@@ -30,5 +30,13 @@ BEGIN DECLARE totalLivros INT;
         SET categoriaPossuiLivros = FALSE;
     END IF;
 END;
+//
+
+--exercicio 5
+CREATE PROCEDURE sp_LivrosAteAno(IN anoPublicacao INT)
+BEGIN SELECT Livro.Titulo, Livro.Ano_Publicacao, Autor.Nome, Autor.Sobrenome FROM Livro INNER JOIN Autor_Livro ON Livro.Livro_ID = Autor_Livro.Livro_ID INNER JOIN Autor ON Autor_Livro.Autor_ID = Autor.Autor_ID WHERE Livro.Ano_Publicacao <= anoPublicacao;
+END;
 
 //
+
+
