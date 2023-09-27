@@ -17,3 +17,18 @@ CREATE PROCEDURE sp_ContarLivrosPorCategoria(IN categoriaNome VARCHAR(100), OUT 
 BEGIN SELECT COUNT(*) INTO totalLivros FROM Livro INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID WHERE Categoria.Nome = categoriaNome;
 END;
 //
+
+--exercicio 4
+CREATE PROCEDURE sp_VerificarLivrosCategoria(IN categoriaNome VARCHAR(100), OUT categoriaPossuiLivros BOOLEAN)
+BEGIN DECLARE totalLivros INT;
+    
+    SELECT COUNT(*) INTO totalLivros FROM Livro INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID WHERE Categoria.Nome = categoriaNome;
+    
+    IF totalLivros > 0 THEN
+        SET categoriaPossuiLivros = TRUE;
+    ELSE
+        SET categoriaPossuiLivros = FALSE;
+    END IF;
+END;
+
+//
