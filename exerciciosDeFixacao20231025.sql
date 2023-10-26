@@ -24,3 +24,15 @@ begin
 	insert into Auditoria (mensagem, data_hora)
     values ('Nome do cliente ID', NEW.cliente_id, 'atualizado de', OLD.nome, 'para', NEW.nome, NOW());
 end;
+
+--exercicio 4--
+DELIMITER //
+create trigger BeforeUpdateCliente
+before update of nome
+on Clientes for each row
+begin
+	insert into Auditoria (mensagem, data_hora)
+    values ('Tentativade atualização inválida para cliente ID ', NEW.cliente_id, NOW());
+end;
+//
+DELIMITER;
