@@ -36,3 +36,15 @@ begin
 end;
 //
 DELIMITER;
+
+--exercicio 5--
+DELIMITER //
+create trigger BeforeUpdateCliente
+before update of nome
+on Clientes for each row
+begin
+	insert into Auditoria (mensagem, data_hora)
+    values ('Tentativade atualização inválida para cliente ID ', NEW.cliente_id, NOW());
+end;
+//
+DELIMITER;
